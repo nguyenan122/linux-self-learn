@@ -62,6 +62,7 @@ curl -vk https://localhost
 
 ```console
 curl --cert /etc/nginx/cert/client.crt --key /etc/nginx/cert/client.key --cacert /etc/nginx/cert/ca.crt https://localhost
+> access to mTLS-protected resource
 ```
 ```console
 openssl s_client -connect localhost:443 -cert /etc/nginx/cert/client.crt -key /etc/nginx/cert/client.key -CAfile /etc/nginx/cert/ca.crt
@@ -71,5 +72,5 @@ openssl s_client -connect localhost:443 -cert /etc/nginx/cert/client.crt -key /e
 
 
 
-
-Source: https:/medium.com/@mahernaija/new-2025-how-to-configure-mutual-tls-mtls-for-secure-nginx-206f983ba571
+---
+Refer: [https:/medium.com/@mahernaija/new-2025-how-to-configure-mutual-tls-mtls-for-secure-nginx-206f983ba571](https:/medium.com/@mahernaija/new-2025-how-to-configure-mutual-tls-mtls-for-secure-nginx-206f983ba571)
