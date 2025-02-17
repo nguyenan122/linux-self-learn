@@ -1,12 +1,12 @@
 ### Vim config fast Ansible
-```
+```console
 # vim ~/.vimrc 
 set ts=2 sw=2
 set tabstop=2
 # mkdir roles
 ```
 ### Makefile
-```
+```console
 .PHONY: help
 help: ## Show this help
 	@echo "Xin Chao"
@@ -16,7 +16,7 @@ install:
 ```
 
 ### Inventory
-```
+```console
 [master]
 worker-node1 ansible_ssh_host=192.168.88.12 ansible_ssh_private_key_file=/home/tuanda/.ssh/id_rsa ansible_user=tuanda
 [worker]
@@ -26,7 +26,7 @@ worker-node2 ansible_ssh_host=192.168.88.14 ansible_ssh_private_key_file=/home/t
 
 ### Roles
 Khai báo roles
-```
+```console
 ---
 - name: Install redis
   hosts: redis
@@ -40,7 +40,7 @@ Khai báo roles
 
 ### Folder and File
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html 
-```
+```console
 - name: create folder
   file:
     path: /setup
@@ -56,7 +56,7 @@ https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.
 ```
 
 ### Debug
-```
+```console
 - name: show echo
   shell: echo {{ tuanda }}
   register: kiemtra
@@ -87,7 +87,7 @@ cái nào xuất hiện trước, sẽ được ưu tiên lấy ra đầu tiên
 
 ### group_vars và host_vars (Thư mục)
 Thứ tự các file sắp xếp như dưới đấy. Việc oder file nào trước nằm ở mục Variable Priority
-```
+```console
 [tuanda@master-node nfs-server-client]$ cat inventory.yml 
 [nfs_server]
 pc1 ansible_ssh_host=192.168.56.12
@@ -112,7 +112,7 @@ pc2 ansible_ssh_host=192.168.56.13
 ```
 
 ### Copy
-```
+```console
 - name: Upload package require
   copy:
     src: "{{ item }}.rpm"
@@ -122,7 +122,7 @@ pc2 ansible_ssh_host=192.168.56.13
 
 ### Local Copy
 Lưu file từ stdout > Ansible master
-```
+```console
 - name: Test x
   shell: "echo XINCHAO"
   register: x
@@ -133,7 +133,7 @@ XINCHAO
   ```
 
 ### Copy file từ remote về Ansible Master
-```
+```console
 - name: Copy file from remote to ansible
   fetch:
     src: /tmp/test.txt
@@ -147,7 +147,7 @@ XINCHAO
 ```
 
 ### Datetime
-```
+```console
 - name: Test date_time
   shell: "echo {{ ansible_date_time.year }}{{ ansible_date_time.month }}{{ ansible_date_time.day }}_{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}{{ ansible_date_time.second }} > /tmp/test.txt"
   ```
@@ -156,13 +156,13 @@ XINCHAO
 
 ### Loop
 Ngoài loop theo item liệt kê. ta còn có thể loop theo variable theo loop.
-```
+```console
 loop:
   - {{ list_port }}
 ```
 
 ### Handler:
-```
+```console
 - name: "restart redis 1"
   service:
     name: "{{ redis_service_name }}"
@@ -171,13 +171,13 @@ loop:
 ```
 
 ### Force handler running
-```
+```console
 - name: Force handler run
   meta: flush_handlers
 ```
 
 ### Create user if not exist
-```
+```console
 - name: check if redis user exists (ignore errors)
   command: id {{ redis_user }}
   ignore_errors: yes
@@ -203,7 +203,7 @@ loop:
 
 ### when
 VD1: Compare variable string
-```
+```console
 [redis_server] < Ta đặt inventory variable như sau:
 192.168.122.129 install_redis=yes  redis_role=master
 ... 
@@ -211,7 +211,7 @@ when:
     - redis_role  == 'master'
 ```
  Ví dụ 2: When with variable bool
- ```
+ ```console
  Ta đặt default var là redis_tarball: false
    when: not redis_tarball
    when: redis_tarball
@@ -222,7 +222,7 @@ nếu là string hoặc interger thì:
 ### For jinja
 Link kiểm tra Jinja https://cryptic-cliffs-32040.herokuapp.com/
 File default:
-```
+```console
 redis_save:
   - 900 1
   - 300 10
@@ -238,11 +238,11 @@ save {{ save }}
 
 ### IF ijnja
 Trong file default mặc định để false. Nếu thay đổi thì xóa false đi và thay bằng string
-```
+```console
 redis_bind: false
 ```
 Trong file Template
-```
+```console
 {% if redis_bind -%}
 bind {{ redis_bind }}
 {% else %}
@@ -259,7 +259,7 @@ Giải thích: Nếu false thì sẽ không có trong file config, nếu không 
 
 ### Ansible Vault
 Phần 1: Tạo và chạy Vault (mã hóa all)
-```
+```console
 ansible-vault create test1.yaml
 ---
 - hosts: api
@@ -275,7 +275,7 @@ ansible-playbook test1.yaml --ask-vault-pass
 ```
 
 Phần 2: Chèn vault vào variable
-```
+```console
 ansible-vault encrypt_string --vault-id @prompt thisismysupersecretstring
 ---
 - hosts: api
