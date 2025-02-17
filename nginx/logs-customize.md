@@ -111,7 +111,7 @@ Logs result from config 4:
 http://nginx.org/en/docs/http/ngx_http_core_module.html#variables
 
 ```console
-log_format main3 'args:$args '
+log_format main3 escape=none 'args:$args '
 ' binary_remote_addr:$binary_remote_addr '
 ' body_bytes_sent:$body_bytes_sent '
 ' bytes_sent:$bytes_sent '
