@@ -212,7 +212,7 @@ add_header xZ-NGINX-DEBUG '=========================================';
 ```
 Ta thực hiện vào Browser Chrome, chọn F12 debug, chọn Network . ấn F5 để refresh lại trang. Và click vào Header để đọc:
 
-[logs-customize-001.PNG](images/logs-customize-001.PNG)
+![logs-customize-001.PNG](images/logs-customize-001.PNG)
 
 
 ---
