@@ -168,9 +168,6 @@ proxy_set_header X-Forwarded-Port  $server_port;
 proxy_connect_timeout              300s;
 proxy_send_timeout                 300s;
 proxy_read_timeout                 300s;
-/etc/nginx/nginxconfig.txt
-https://www.digitalocean.com/community/tools/nginx?domains.0.https.certType=custom&domains.0.https.sslCertificate=%2Fetc%2Fnginx%2Fssl%2Fca.crt&domains.0.https.sslCertificateKey=%2Fetc%2Fnginx%2Fssl%2Fca.key&domains.0.php.php=false&domains.0.reverseProxy.reverseProxy=true&domains.0.routing.index=index.html&domains.0.routing.fallbackHtml=true
-
 ```
 
 
